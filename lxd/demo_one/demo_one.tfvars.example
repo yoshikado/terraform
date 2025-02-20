@@ -1,0 +1,14 @@
+# provider
+lxd_remote_name = "lxd-remote"
+lxd_remote_addr = "https://127.0.0.1:8443"
+
+# add_client
+ssh_user                  = "ubuntu"
+ssh_host                  = "127.0.0.1"
+ssh_private_key           = "~/.ssh/id_ed25519"
+project1_client_cert_path = "~/client1.crt"
+project2_client_cert_path = "~/client2.crt"
+
+# floating IP
+floatingip_container1 = 
+floatingip_vm1        =
