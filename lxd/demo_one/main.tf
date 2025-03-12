@@ -149,6 +149,13 @@ resource "lxd_instance" "container1" {
   profiles   = [var.project1_profile_name]
   project    = lxd_project.project1.name
   type       = "container"
+
+  config = {
+    "cloud-init.user-data" = <<-EOF
+    #cloud-config
+    ssh_import_id: lp:yoshikadokawa
+    EOF
+  }
 }
 
 resource "lxd_instance" "container2" { 
@@ -162,6 +169,13 @@ resource "lxd_instance" "container2" {
   profiles   = [var.project1_profile_name]
   project    = lxd_project.project1.name
   type       = "container"
+
+  config = {
+    "cloud-init.user-data" = <<-EOF
+    #cloud-config
+    ssh_import_id: lp:yoshikadokawa
+    EOF
+  }
 }
 
 resource "lxd_instance" "vm1" { 
@@ -190,6 +204,12 @@ resource "lxd_instance" "vm1" {
         routes:
           - to: default
             via: ${var.ext_net_gw}
+        nameservers:
+          addresses: [172.16.21.254]
+    EOF
+    "cloud-init.user-data" = <<-EOF
+    #cloud-config
+    ssh_import_id: lp:yoshikadokawa
     EOF
   }
 }
@@ -221,6 +241,12 @@ resource "lxd_instance" "vm2" {
         routes:
           - to: default
             via: ${var.ext_net_gw}
+        nameservers:
+          addresses: [172.16.21.254]
+    EOF
+    "cloud-init.user-data" = <<-EOF
+    #cloud-config
+    ssh_import_id: lp:yoshikadokawa
     EOF
   }
 }
