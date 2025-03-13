@@ -1,0 +1,26 @@
+# LXD provider
+lxd_remote_name = "lxd-remote"
+lxd_remote_addr = "https://127.0.0.1:8443"
+
+# SSH credentials to access LXD cluster
+ssh_user                  = "ubuntu"
+ssh_host                  = "127.0.0.1"
+ssh_private_key           = "~/.ssh/id_ed25519"
+
+# Client certificates
+project1_client_cert_path = "~/client1.crt"
+project2_client_cert_path = "~/client2.crt"
+
+# SSH public key to use for containers/VMs
+ssh_pub_key = "ssh-ed25519 AAAAC..."
+
+# Container Forward IP addresses (Floating IP)
+container1_address = "192.168.1.200"
+container2_address = "192.168.1.201"
+
+# VM IP addresses
+provider_bridge    = "brexternal"
+ext_net_gw         = "192.168.10.254"
+vm_dns_address     = "8.8.8.8"
+vm1_cidr_address   = "192.168.10.200/24"
+vm2_cidr_address   = "192.168.10.201/24"

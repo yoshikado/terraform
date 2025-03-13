@@ -98,8 +98,17 @@ variable "project2_profile_name" {
   type        = string
   default     = "project2_profile"
 }
+variable "ssh_pub_key" {
+  description = "SSH public key to send to containers/VMs via cloud-init"
+  type        = string
+}
+variable "vm_dns_address" {
+  description = "DNS address for VMs"
+  type        = string
+}
 
-# IP addresses
+# Forward IP addresses for containers 
+# Select from subnet configured for UPLINK 
 variable "container1_address" {
   description = "Floating IP address for container1"
   type        = string
@@ -108,16 +117,22 @@ variable "container2_address" {
   description = "Floating IP address for container2"
   type        = string
 }
-variable "vm1_cidr_address" {
-  description = "IP address for vm1"
-  type        = string
-}
-variable "vm2_cidr_address" {
-  description = "IP address for vm2"
+
+# IP addresses for VMs
+variable "provider_bridge" {
+  description = "The bridge name that connects to the external network"
   type        = string
 }
 variable "ext_net_gw" {
   description = "Gateway address for the external network"
+  type        = string
+}
+variable "vm1_cidr_address" {
+  description = "External IP address for vm1"
+  type        = string
+}
+variable "vm2_cidr_address" {
+  description = "External IP address for vm2"
   type        = string
 }
 

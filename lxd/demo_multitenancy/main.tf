@@ -108,7 +108,7 @@ resource "lxd_profile" "project2_profile" {
     properties = {
       name     = "enp5s0"
       nictype  = "bridged"
-      parent   = "brexternal"
+      parent   = var.provider_bridge
     }
   }
 
@@ -153,7 +153,11 @@ resource "lxd_instance" "container1" {
   config = {
     "cloud-init.user-data" = <<-EOF
     #cloud-config
-    ssh_import_id: lp:yoshikadokawa
+    users:
+    - name: ubuntu
+      shell: /bin/bash
+      sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+      ssh-authorized-keys: [${var.ssh_pub_key}]
     EOF
   }
 }
@@ -173,7 +177,11 @@ resource "lxd_instance" "container2" {
   config = {
     "cloud-init.user-data" = <<-EOF
     #cloud-config
-    ssh_import_id: lp:yoshikadokawa
+    users:
+    - name: ubuntu
+      shell: /bin/bash
+      sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+      ssh-authorized-keys: [${var.ssh_pub_key}]
     EOF
   }
 }
@@ -205,11 +213,15 @@ resource "lxd_instance" "vm1" {
           - to: default
             via: ${var.ext_net_gw}
         nameservers:
-          addresses: [172.16.21.254]
+          addresses: [${var.vm_dns_address}]
     EOF
     "cloud-init.user-data" = <<-EOF
     #cloud-config
-    ssh_import_id: lp:yoshikadokawa
+    users:
+    - name: ubuntu
+      shell: /bin/bash
+      sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+      ssh-authorized-keys: [${var.ssh_pub_key}]
     EOF
   }
 }
@@ -242,11 +254,15 @@ resource "lxd_instance" "vm2" {
           - to: default
             via: ${var.ext_net_gw}
         nameservers:
-          addresses: [172.16.21.254]
+          addresses: [${var.vm_dns_address}]
     EOF
     "cloud-init.user-data" = <<-EOF
     #cloud-config
-    ssh_import_id: lp:yoshikadokawa
+    users:
+    - name: ubuntu
+      shell: /bin/bash
+      sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+      ssh-authorized-keys: [${var.ssh_pub_key}]
     EOF
   }
 }
