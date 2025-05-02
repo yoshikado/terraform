@@ -1,0 +1,14 @@
+# LXD provider
+lxd_remote_name = "lxd-remote"
+lxd_remote_addr = "https://127.0.0.1:8443"
+
+# SSH public key to use for containers/VMs
+ssh_pub_key = "ssh-ed25519 AAAAC..."
+
+# VM IP addresses
+provider_bridge    = "brexternal"
+ext_net_gw         = "192.168.150.1"
+vm_dns_address     = "8.8.8.8"
+vm1_address        = "192.168.150.200"
+vm2_address        = "192.168.150.201"
+vm3_address        = "192.168.150.202"
